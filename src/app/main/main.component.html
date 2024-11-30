@@ -1,0 +1,24 @@
+<div>
+  <label for="city">Select City:</label>
+  <select id="city" [(ngModel)]="selectedCity" (change)="onCityChange()">
+    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+  </select>
+</div>
+
+<div *ngIf="weatherData">
+  <h3>Weather Forecast for {{ selectedCity }}</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Temperature (°C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forecast of weatherData.list">
+        <td>{{ forecast.dt_txt }}</td>
+        <td>{{ forecast.main.temp }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
