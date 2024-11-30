@@ -5,20 +5,20 @@
   </select>
 </div>
 
+<app-weather-chart [chartData]="weatherData"></app-weather-chart>
+
+
 <div *ngIf="weatherData">
   <h3>Weather Forecast for {{ selectedCity }}</h3>
   <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Temperature (°C)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let forecast of weatherData.list">
-        <td>{{ forecast.dt_txt }}</td>
-        <td>{{ forecast.main.temp }}</td>
-      </tr>
-    </tbody>
+    <tr>
+      <th>Date</th>
+      <th>Temperature (°C)</th>
+    </tr>
+    <tr *ngFor="let data of weatherData">
+      <td>{{ data.date }}</td>
+      <td>{{ data.temperature }}</td>
+    </tr>
   </table>
+  
 </div>
