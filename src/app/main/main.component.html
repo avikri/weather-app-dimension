@@ -3,9 +3,9 @@
   <h1 class="text-2xl font-bold text-center mb-4 text-white" >
    Discover the Weather: Select Your City Below
   </h1>  
-  <select class=" bg-blue-900 text-[1.5rem]" id="city" [(ngModel)]="selectedCity" (change)="onCityChange()">
+  <select class=" bg-blue-900 text-3xl text-white" id="city" [(ngModel)]="selectedCity" (change)="onCityChange()">
     <option class= "text-center" value="" disabled selected>City</option>
-    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    <option class= "text-center text-white" *ngFor="let city of cities" [value]="city">{{ city }}</option>
   </select>
 </div>
 

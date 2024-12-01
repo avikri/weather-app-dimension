@@ -24,8 +24,8 @@ export class MainComponent implements OnInit {
 
   onCityChange(): void {
     if (this.selectedCity) {
-      this.weatherService.getWeatherData(this.selectedCity).subscribe(
-        (data) => {
+      this.weatherService.getWeatherData(this.selectedCity).subscribe({
+        next: (data) => {
           this.weatherData = data.list.map((item: any) => ({
             date: new Date(item.dt * 1000).toLocaleString('en-GB', {
               day: '2-digit',
@@ -37,11 +37,21 @@ export class MainComponent implements OnInit {
             temperature: item.main.temp
           }));
         },
-        (error) => {
-          console.error('Error fetching weather data', error);
-        }
-      );
+        error: (error) => {
+          const errorMessage = error.message || 'Unknown error occurred';
+          const errorStatus = error.status || 'No status code';
+          const errorDetails = error.error || 'No additional details';
+  
+          console.error(
+            `Failed to fetch weather data for city: ${this.selectedCity}. 
+            Status: ${errorStatus}, 
+            Message: ${errorMessage}, 
+            Details: ${JSON.stringify(errorDetails)}`
+          );
+        },
+      });
     }
   }
+  
   
 }
