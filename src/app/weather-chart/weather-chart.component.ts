@@ -17,25 +17,45 @@ export class WeatherChartComponent implements OnChanges {
   chartOptions: Highcharts.Options = {
     chart: {
       type: 'line',
+      backgroundColor: '#2C2C2C', // Set background color
     },
     title: {
       text: '5-Day Weather Forecast',
+      style: { color: '#FFFFFF' }, // Set title text color
+    },
+    legend: {
+      itemStyle: {
+        color: '#FFFFFF', // Set text color for legend (key)
+      },
+      itemHoverStyle: {
+        color: '#FFAA00', // Optional: Set hover color for legend items
+      },
     },
     xAxis: {
       categories: [], // Placeholder for dynamic dates
-      title: { text: 'Date' },
+      title: { text: 'Date', style: { color: '#FFFFFF' } }, // Axis title color
+      labels: { style: { color: '#FFFFFF' } }, // Axis labels color
     },
     yAxis: {
-      title: { text: 'Temperature (°C)' },
+      title: { text: 'Temperature (°C)', style: { color: '#FFFFFF' } }, // Axis title color
+      labels: { style: { color: '#FFFFFF' } }, // Axis labels color
     },
     series: [
       {
         type: 'line',
         name: 'Temperature',
         data: [], // Placeholder for dynamic temperature data
+        color: '#FFAA00', // Set line color
+        marker: {
+          fillColor: '#FFFFFF', // Set marker (data point) fill color
+          lineWidth: 2,         // Marker border width
+          lineColor: '#FFAA00', // Marker border color (matches the line color)
+        },
       },
     ],
   };
+  
+  
 
   ngOnChanges(): void {
     if (this.chartData.length > 0) {
@@ -61,4 +81,6 @@ export class WeatherChartComponent implements OnChanges {
     };
     this.updateFlag = true; // Trigger chart update
   }
+
+  
 }
