@@ -26,7 +26,6 @@ export class MainComponent implements OnInit {
     if (this.selectedCity) {
       this.weatherService.getWeatherData(this.selectedCity).subscribe(
         (data) => {
-          // Process the API response to extract date and temperature
           this.weatherData = data.list.map((item: any) => ({
             date: new Date(item.dt * 1000).toLocaleString('en-GB', {
               day: '2-digit',
@@ -37,7 +36,6 @@ export class MainComponent implements OnInit {
             }),
             temperature: item.main.temp
           }));
-          console.log('Processed weather data for chart:', this.weatherData);
         },
         (error) => {
           console.error('Error fetching weather data', error);

@@ -17,39 +17,39 @@ export class WeatherChartComponent implements OnChanges {
   chartOptions: Highcharts.Options = {
     chart: {
       type: 'line',
-      backgroundColor: '#2C2C2C', // Set background color
+      backgroundColor: '#2C2C2C', 
     },
     title: {
       text: '5-Day Weather Forecast',
-      style: { color: '#FFFFFF' }, // Set title text color
+      style: { color: '#FFFFFF' }, 
     },
     legend: {
       itemStyle: {
-        color: '#FFFFFF', // Set text color for legend (key)
+        color: '#FFFFFF', 
       },
       itemHoverStyle: {
-        color: '#FFAA00', // Optional: Set hover color for legend items
+        color: '#FFAA00', 
       },
     },
     xAxis: {
-      categories: [], // Placeholder for dynamic dates
-      title: { text: 'Date', style: { color: '#FFFFFF' } }, // Axis title color
-      labels: { style: { color: '#FFFFFF' } }, // Axis labels color
+      categories: [], 
+      title: { text: 'Date', style: { color: '#FFFFFF' } }, 
+      labels: { style: { color: '#FFFFFF' } }, 
     },
     yAxis: {
-      title: { text: 'Temperature (°C)', style: { color: '#FFFFFF' } }, // Axis title color
-      labels: { style: { color: '#FFFFFF' } }, // Axis labels color
+      title: { text: 'Temperature (°C)', style: { color: '#FFFFFF' } }, 
+      labels: { style: { color: '#FFFFFF' } }, 
     },
     series: [
       {
         type: 'line',
         name: 'Temperature',
-        data: [], // Placeholder for dynamic temperature data
-        color: '#FFAA00', // Set line color
+        data: [], 
+        color: '#1E3A8A', 
         marker: {
-          fillColor: '#FFFFFF', // Set marker (data point) fill color
-          lineWidth: 2,         // Marker border width
-          lineColor: '#FFAA00', // Marker border color (matches the line color)
+          fillColor: '#1E3A8A', 
+          lineWidth: 2,         
+          lineColor: '#1E3A8A', 
         },
       },
     ],
@@ -59,7 +59,6 @@ export class WeatherChartComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.chartData.length > 0) {
-      console.log('Chart received new data:', this.chartData);
       this.updateChart();
     }
   }
@@ -79,7 +78,7 @@ export class WeatherChartComponent implements OnChanges {
         },
       ],
     };
-    this.updateFlag = true; // Trigger chart update
+    this.updateFlag = true; 
   }
 
   
