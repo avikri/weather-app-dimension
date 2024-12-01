@@ -10,29 +10,43 @@
 
 <div class="flex flex-col lg:flex-row items-stretch h-[80vh]">
 
-  <div class="w-full lg:w-2/3 p-4">
-    <app-weather-chart [chartData]="weatherData"></app-weather-chart>
+ <div class="w-full lg:w-2/3 p-4">
+    <div *ngIf="!selectedCity; else chartSection" class="flex items-center justify-center h-full border border-gray-300 rounded-md">
+      <p class="text-center text-gray-500">
+        The five-day weather forecast chart will appear here!
+      </p>
+    </div>
+    <ng-template #chartSection>
+      <app-weather-chart [chartData]="weatherData"></app-weather-chart>
+    </ng-template>
   </div>
 
   
-  <div class="w-full lg:w-1/3 p-4" *ngIf="weatherData">
-    <h3 class="flex justify-left text-center p-4">Weather Forecast for {{ selectedCity }}</h3>
-    <div class="h-[65vh] overflow-y-auto border border-gray-300 rounded-md">
-      <table class="table-auto w-full">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="px-4 py-2 text-left">Date</th>
-            <th class="px-4 py-2 text-left">Temperature (°C)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of weatherData" class="odd:bg-white even:bg-gray-50">
-            <td class="px-4 py-2">{{ data.date }}</td>
-            <td class="px-4 py-2">{{ data.temperature }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="w-full lg:w-1/3 p-4">
+    <div *ngIf="!selectedCity; else tableSection" class="flex items-center justify-center h-full border border-gray-300 rounded-md">
+      <p class="text-center text-gray-500">
+        The detailed weather forecast will be shown here!
+      </p>
     </div>
+    <ng-template #tableSection>
+      <h3 class="flex justify-center text-center p-4">Weather Forecast for {{ selectedCity }}</h3>
+      <div class="h-[65vh] overflow-y-auto border border-gray-300 rounded-md">
+        <table class="table-auto w-full">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="px-4 py-2 text-left">Date</th>
+              <th class="px-4 py-2 text-left">Temperature (°C)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of weatherData" class="odd:bg-white even:bg-gray-50">
+              <td class="px-4 py-2">{{ data.date }}</td>
+              <td class="px-4 py-2">{{ data.temperature }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
   </div>
 </div>
 
