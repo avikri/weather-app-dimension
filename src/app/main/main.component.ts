@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 
-import { CommonModule } from '@angular/common'; // Import CommonModule
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel binding
+import { CommonModule } from '@angular/common'; 
+import { FormsModule } from '@angular/forms'; 
 
 import { WeatherChartComponent } from '../weather-chart/weather-chart.component';
 
@@ -16,12 +16,12 @@ export class MainComponent implements OnInit {
   cities = ['Toronto', 'Karachi', 'London', 'Sydney'];
   selectedCity: string = '';
   weatherData: { date: string; temperature: number }[] = [];
-  chartData: { date: string; temperature: number }[] = [];
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {}
 
+  //query selected city when the user selects a new city
   onCityChange(): void {
     if (this.selectedCity) {
       this.weatherService.getWeatherData(this.selectedCity).subscribe({
@@ -37,6 +37,7 @@ export class MainComponent implements OnInit {
             temperature: item.main.temp
           }));
         },
+        //error handling
         error: (error) => {
           const errorMessage = error.message || 'Unknown error occurred';
           const errorStatus = error.status || 'No status code';

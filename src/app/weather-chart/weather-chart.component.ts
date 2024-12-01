@@ -9,11 +9,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
   imports: [HighchartsChartModule],
 })
 export class WeatherChartComponent implements OnChanges {
+
+  //set input for component
   @Input() chartData: { date: string; temperature: number }[] = [];
 
   Highcharts: typeof Highcharts = Highcharts;
   updateFlag = false;
 
+  //set options for chart
   chartOptions: Highcharts.Options = {
     chart: {
       type: 'line',
@@ -63,6 +66,7 @@ export class WeatherChartComponent implements OnChanges {
     }
   }
 
+  //update chart with fetched data
   updateChart(): void {
     this.chartOptions = {
       ...this.chartOptions,
